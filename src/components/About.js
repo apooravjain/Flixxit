@@ -3,11 +3,16 @@ import Header from "./Header";
 
 const About = () => {
   return (
-    <div>
+    <div className="min-h-screen bg-black text-white">
       <Header />
 
-      <div className=" bg-black text-white ">
-        <h1 className="text-4xl font-bold mb-4 text-red-600">Flixxit</h1>
+      <div className="w-full max-w-screen-xl mx-auto p-8 py-32">
+        {/* <h1 className="text-4xl font-bold mb-4 bg-gradient-to-r from-red-700 to-black opacity-75 text-center"> */}
+        <div className="flex items-center justify-center">
+          <h1 className="font-extrabold text-transparent text-4xl p-5 text-center bg-clip-text bg-gradient-to-r from-red-950 via-red-600 to-red-950">
+            Flixxit
+          </h1>
+        </div>
         <p className=" mb-4">
           Flixxit is an OTT platform for watching movies and TV shows. It
           provides a wide range of content for users to browse, search, and

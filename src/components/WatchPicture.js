@@ -3,6 +3,9 @@ import { IMG_CDN_URL } from "../utils/constants";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { addMedia } from "../utils/watchListSlice";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { addToFirebaseWatchList } from "../utils/watchListSlice";
 
 const WatchPicture = ({ id, posterPath, vote, title, overview, mediaType }) => {
   const navigate = useNavigate();
@@ -13,7 +16,7 @@ const WatchPicture = ({ id, posterPath, vote, title, overview, mediaType }) => {
   if (!posterPath) return null;
 
   const handleWatch = () => {
-    navigate(`/video/${id}`, { state: { mediaType } });
+    navigate(`/play/${id}`, { state: { mediaType } });
   };
 
   const mediaData = {
@@ -23,7 +26,9 @@ const WatchPicture = ({ id, posterPath, vote, title, overview, mediaType }) => {
   };
 
   const addToWatchList = () => {
+    toast("Added to favourites!");
     dispatch(addMedia(mediaData));
+    dispatch(addToFirebaseWatchList(mediaData));
   };
 
   return (
@@ -49,6 +54,7 @@ const WatchPicture = ({ id, posterPath, vote, title, overview, mediaType }) => {
         >
           Add +
         </button>
+        <ToastContainer />
       </div>
     </div>
   );

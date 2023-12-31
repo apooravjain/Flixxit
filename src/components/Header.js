@@ -16,7 +16,7 @@ const Header = () => {
     signOut(auth)
       .then(() => {
         // Sign-out successful.
-        navigate("/");
+        navigate("/login");
       })
       .catch((error) => {
         // An error happened.
@@ -24,35 +24,16 @@ const Header = () => {
       });
   };
 
-  // useEffect(() => {
-  //   const unsubscribe = onAuthStateChanged(auth, (user) => {
-  //     if (user) {
-  //       const { uid, email, displayName, photoURL } = user;
-  //       dispatch(
-  //         addUser({
-  //           uid: uid,
-  //           email: email,
-  //           displayName: displayName,
-  //           photoURL: photoURL,
-  //         })
-  //       );
-  //       navigate("/browse");
-  //     } else {
-  //       dispatch(removeUser());
-  //       navigate("/");
-  //     }
-  //   });
-
-  //   //Unsubscribe whem component unmounts
-  //   return () => unsubscribe();
-  // }, []);
-
   return (
     <div className="absolute w-screen px-8 py-2 bg-gradient-to-b from-black z-10 flex">
-      <img className="w-44" src={LOGO} alt="logo" />
+      <div className="flex items-center justify-center p-3 mr-16">
+        <h1 className="font-extrabold text-transparent text-4xl text-center bg-clip-text bg-gradient-to-r from-red-950 via-red-600 to-red-950">
+          Flixxit
+        </h1>
+      </div>
       {user && (
-        <div className="flex">
-          <div className="">
+        <nav className="flex items-center justify-between">
+          <div className="hidden md:flex">
             <Link to={"/browse"}>
               <button className="text-white font-bold m-2">HOME</button>
             </Link>
@@ -69,7 +50,7 @@ const Header = () => {
               <button className="text-white font-bold m-2">ABOUT</button>
             </Link>
           </div>
-          <div className="">
+          <div className="relative flex items-center justify-end">
             <div className="flex p-2 m-2 items-center">
               <Link to={"/profile"}>
                 <img
@@ -86,7 +67,7 @@ const Header = () => {
               </button>
             </div>
           </div>
-        </div>
+        </nav>
       )}
     </div>
   );

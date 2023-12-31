@@ -3,14 +3,14 @@ import { useSelector } from "react-redux";
 import { Route, Navigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 
-const ProtectedRoute = ({ children }) => {
+const PublicRoute = ({ children }) => {
   const user = useSelector((state) => state.user);
   let location = useLocation();
-
-  if (!user) {
-    return <Navigate to="/login" state={{ from: location }} />;
+  console.log(user);
+  if (user) {
+    return <Navigate to="/browse" />;
   }
   return children;
 };
 
-export default ProtectedRoute;
+export default PublicRoute;

@@ -5,6 +5,8 @@ import { IMG_CDN_URL } from "../utils/constants";
 import { useDispatch } from "react-redux";
 import { removeMedia } from "../utils/watchListSlice";
 import { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const Profile = () => {
   const storedUserJSON = localStorage.getItem("userData");
@@ -13,13 +15,21 @@ const Profile = () => {
   const watchList = useSelector((state) => state.watchList);
   const [showModal, setShowModal] = useState(false);
   const [selectedPlan, setSelectedPlan] = useState("monthly");
+  const [isMember, setIsMember] = useState(false);
+  const navigate = useNavigate();
 
   const removeWatch = (id) => {
     diapatch(removeMedia(id));
   };
 
   const handleUpgradeClick = () => {
-    setShowModal(true);
+    if (isMember) {
+      setIsMember(false);
+      setSelectedPlan("monthly");
+      toast.success("Unsubscribed Successfully");
+    } else {
+      setShowModal(true);
+    }
   };
 
   const handleCloseModalClick = () => {
@@ -39,18 +49,10 @@ const Profile = () => {
     },
   };
   const handlePayNow = () => {
-    // try {
-    //   const res = await updateProfile({
-    //     _id: userInfo._id,
-    //     membership:"Plus",
-    //     jwt:userInfo.jwt
-    //   }).unwrap();
-    //   dispatch(setCredentials(res));
-    //   toast.success(`Payment successful for ${plans[selectedPlan].name}`);
-    //   navigate("/profile");
-    // } catch (err) {
-    //   toast.error(err?.data?.message || err.error);
-    // }
+    setIsMember(true);
+    setShowModal(false);
+    navigate("/profile");
+    toast.success("Subscription Successful");
   };
   return (
     <div className="flex min-h-screen bg-black">
@@ -68,21 +70,23 @@ const Profile = () => {
               </h2>
               <p className="font-semibold">
                 Name: {storedUser.name || "user"}{" "}
-                {<span className="shining-badge">Plus</span>}
+                {isMember ? <span className="shining-badge">Plus</span> : null}
               </p>
               <p>Email: {storedUser.email || "johndoe@example.com"}</p>
             </div>
             <div class="w-1/2 p-5 bg-gray-200 rounded-lg shadow-md border-r border-gray-300">
               <h2 class="font-bold text-2xl mb-2.5 text-black">
-                Upgrade to Flixxit Plus
+                Subscribe to Flixxit Plus
               </h2>
               <p>Enhance your experience with premium features.</p>
               <button
                 className="font-bold p-2 mt-2 mr-2 mb-2 text-white bg-red-700 rounded-lg"
                 onClick={handleUpgradeClick}
               >
-                Upgrade Now
+                {isMember ? "Unsubscribe" : "Subscribe now"}
               </button>
+              <ToastContainer />
+
               {showModal && (
                 <div className="fixed inset-0 flex items-center justify-center z-70">
                   <div className="bg-gradient-to-r from-red-900 to-black opacity-75 absolute inset-0"></div>
@@ -93,14 +97,16 @@ const Profile = () => {
                     >
                       X
                     </button>
-                    <h2>Upgrade to Flixxit Plus</h2>
+                    <h1 className="p-5 text-center font-bold">
+                      Upgrade to Flixxit Plus
+                    </h1>
                     <div className="flex justify-center space-x-5 mb-5">
                       {" "}
                       {Object.keys(plans).map((plan) => (
                         <div
                           key={plan}
                           className={`p-2 border-2 border-gray-300 rounded-lg cursor-pointer transition-colors duration-300 ${
-                            selectedPlan === plan ? "selected" : ""
+                            selectedPlan === plan ? "bg-red-700" : ""
                           }`}
                           onClick={() => handlePlanChange(plan)}
                         >
@@ -144,12 +150,12 @@ const Profile = () => {
                       src={IMG_CDN_URL + media.posterPath}
                       alt={media.title}
                     />
-                    <h2 class="text-lg m-0 flex-1 overflow-hidden whitespace-nowrap overflow-ellipsis">
+                    <h2 class="text-lg font-bold m-0 flex-1 overflow-hidden whitespace-nowrap overflow-ellipsis">
                       {media.title}
                     </h2>
 
                     <button
-                      className="text-center mt-2.5 hover:font-bold"
+                      className="font-bold p-2 mt-2 mr-2 mb-2 text-white bg-red-700 rounded-lg"
                       onClick={() => removeWatch(media.id)}
                     >
                       remove
