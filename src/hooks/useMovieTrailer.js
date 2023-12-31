@@ -5,7 +5,6 @@ import { addTrailerVideo } from "../utils/moviesSlice";
 import { useState } from "react";
 
 const useMovieTrailer = (movieId, mediaType = "tv") => {
-  console.log("ooo", mediaType);
   const [trailer, setTrailer] = useState("");
 
   // const dispatch = useDispatch();
@@ -21,7 +20,6 @@ const useMovieTrailer = (movieId, mediaType = "tv") => {
       API_OPTIONS
     );
     const json = await data.json();
-    console.log(json);
 
     const filterData =
       json.results.filter((video) => video.type === "Trailer") || [];

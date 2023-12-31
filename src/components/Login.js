@@ -36,6 +36,13 @@ const Login = () => {
         .then((userCredential) => {
           const user = userCredential.user;
 
+          const userJSON = JSON.stringify({
+            name: user.displayName,
+            email: user.email,
+          });
+
+          localStorage.setItem("userData", userJSON);
+
           //Update Profile
           updateProfile(user, {
             displayName: name.current.value,
@@ -61,6 +68,7 @@ const Login = () => {
           const errorCode = error.code;
           const errorMessage = error.message;
           setErrorMessage(errorCode + "-" + errorMessage);
+          localStorage.removeItem("userData");
         });
     } else {
       // Sign In Logic
@@ -72,12 +80,23 @@ const Login = () => {
         .then((userCredential) => {
           // Signed in
           const user = userCredential.user;
+
+          // Convert the user object to a JSON string
+          const userJSON = JSON.stringify({
+            name: user.displayName,
+            email: user.email,
+          });
+
+          // // Save the JSON string in localStorage under a key (e.g., 'userData')
+          localStorage.setItem("userData", userJSON);
+
           navigate("/browse");
         })
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
           setErrorMessage(errorCode + "-" + errorMessage);
+          localStorage.removeItem("userData");
         });
     }
   };

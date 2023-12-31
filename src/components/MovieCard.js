@@ -10,8 +10,6 @@ const MovieCard = ({
   // Navigate to a new page and pass state parameters
 
   const handleClick = () => {
-    console.log("movie", movie);
-
     navigate("/watch/" + movie.id, {
       state: {
         posterPath: movie.poster_path,

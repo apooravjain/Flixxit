@@ -4,7 +4,6 @@ import MovieCard from "./MovieCard";
 
 const Movies = () => {
   const movies = useSelector((story) => story.movies.popularMovies);
-  console.log("jii", movies);
 
   return (
     <div>

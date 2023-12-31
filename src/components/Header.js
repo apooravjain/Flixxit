@@ -71,7 +71,13 @@ const Header = () => {
           </div>
           <div className="">
             <div className="flex p-2 m-2 items-center">
-              <img className="w-10 h-10" src={user?.photoURL} alt="usericon" />
+              <Link to={"/profile"}>
+                <img
+                  className="w-10 h-10"
+                  src={user?.photoURL}
+                  alt="usericon"
+                />
+              </Link>
               <button
                 onClick={handleSignOut}
                 className="font-bold p-2 m-2  text-white bg-red-700 rounded-lg"

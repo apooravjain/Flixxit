@@ -8,11 +8,13 @@ import { onAuthStateChanged } from "firebase/auth";
 import { addUser, removeUser } from "../utils/userSlice";
 import WatchPage from "./WatchPage";
 import About from "./About";
-import Header from "./Header";
+
 import WatchVideo from "./WatchVideo";
 import Movies from "./Movies";
 import Media from "./Media";
 import SearchPage from "./SearchPage";
+import Profile from "./Profile";
+import ProtectedRoute from "./ProtectedRoute";
 
 const Body = () => {
   const dispatch = useDispatch();
@@ -42,7 +44,7 @@ const Body = () => {
     },
     {
       path: "/browse",
-      element: <Browse />,
+      element: <ProtectedRoute element={<Browse />} />,
     },
     {
       path: "/watch/:id",
@@ -67,6 +69,10 @@ const Body = () => {
     {
       path: "/about",
       element: <About />,
+    },
+    {
+      path: "/profile",
+      element: <Profile />,
     },
   ]);
 

@@ -6,7 +6,6 @@ import WatchPage from "./WatchPage";
 
 const SecondaryContainer = () => {
   const movies = useSelector((story) => story.movies);
-  //console.log(movies);
 
   return (
     <div className="bg-black">
