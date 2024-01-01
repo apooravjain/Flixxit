@@ -1,7 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { IMG_CDN_URL } from "../utils/constants";
 import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
 import { addMedia } from "../utils/watchListSlice";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -34,27 +33,29 @@ const WatchPicture = ({ id, posterPath, vote, title, overview, mediaType }) => {
   return (
     <div className="flex px-16 pt-[8%] min-h-screen bg-black">
       <img
-        className="w-96 h-96 px-10"
+        className="w-2/6 h-2/6 px-10"
         alt="Movie Card"
         src={IMG_CDN_URL + posterPath}
       />
-      <div className="pl-10 text-white ">
-        <h3 className="font-extrabold text-center mb-8">{title}</h3>
-        <p className="text-center mb-8">{vote}</p>
+      <div className="pl-40 py-9 text-white w-2/4">
+        <h3 className="font-extrabold text-center mb-8 text-3xl">{title}</h3>
+        <p className="text-center font-bold mb-8">Rating: {vote}</p>
         <p className="text-center mb-8">{overview}</p>
-        <button
-          className="bg-red-700 p-2 m-2 font-extrabold rounded-lg"
-          onClick={handleWatch}
-        >
-          Play
-        </button>
-        <button
-          className="bg-red-700 p-2 m-2 font-extrabold rounded-lg"
-          onClick={addToWatchList}
-        >
-          Add +
-        </button>
-        <ToastContainer />
+        <div className="text-center">
+          <button
+            className="w-24 p-2 m-2 font-extrabold rounded-lg bg-gradient-to-r from-red-950 via-red-600 to-red-950"
+            onClick={handleWatch}
+          >
+            Play
+          </button>
+          <button
+            className="bg-gradient-to-r from-red-950 via-red-600 to-red-950 w-24 p-2 m-2 font-extrabold rounded-lg"
+            onClick={addToWatchList}
+          >
+            Add +
+          </button>
+          <ToastContainer />
+        </div>
       </div>
     </div>
   );

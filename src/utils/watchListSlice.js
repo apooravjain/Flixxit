@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-
 import { db } from "../utils/firebase";
 import { addDoc, collection } from "firebase/firestore";
 

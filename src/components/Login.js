@@ -58,7 +58,7 @@ const Login = () => {
                   photoURL: photoURL,
                 })
               );
-              navigate("/browse");
+              navigate("/");
             })
             .catch((error) => {
               setErrorMessage(error.message);
@@ -90,7 +90,7 @@ const Login = () => {
           // // Save the JSON string in localStorage under a key (e.g., 'userData')
           localStorage.setItem("userData", userJSON);
 
-          navigate("/browse");
+          navigate("/");
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -147,9 +147,16 @@ const Login = () => {
           {isSignInForm ? "Sign In" : "Sign Up"}
         </button>
         <p className="py-4 cursor-pointer" onClick={toggleSignInForm}>
-          {isSignInForm
-            ? "New to Netflix? Sign Up Now"
-            : "Already registered? Sign In Now."}
+          {isSignInForm ? (
+            <span>
+              New to Netflix? <span className="text-red-600">Sign Up Now</span>
+            </span>
+          ) : (
+            <span>
+              Already registered?{" "}
+              <span className="text-red-600">Sign In Now.</span>
+            </span>
+          )}
         </p>
       </form>
     </div>

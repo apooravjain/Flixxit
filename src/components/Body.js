@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Login from "./Login";
 import Browse from "./Browse";
 import { useDispatch } from "react-redux";
@@ -10,7 +9,6 @@ import WatchPage from "./WatchPage";
 import About from "./About";
 
 import WatchVideo from "./WatchVideo";
-import Movies from "./Movies";
 import Media from "./Media";
 import SearchPage from "./SearchPage";
 import Profile from "./Profile";
@@ -50,7 +48,7 @@ const Body = () => {
           }
         />
         <Route
-          path="/browse"
+          path="/"
           element={
             <ProtectedRoute>
               <Browse />
@@ -117,51 +115,5 @@ const Body = () => {
     </Router>
   );
 };
-
-// const appRouter = createBrowserRouter([
-//   {
-//     path: "/login",
-//     element: <Login />,
-//   },
-//   {
-//     path: "/browse",
-//     element: <ProtectedRoute element={<Browse />} />,
-//   },
-//   {
-//     path: "/watch/:id",
-//     element: <WatchPage />,
-//   },
-//   {
-//     path: "/play/:id",
-//     element: <WatchVideo />,
-//   },
-//   {
-//     path: "/tv",
-//     element: <Media mediaType="tv" />,
-//   },
-//   {
-//     path: "/movies",
-//     element: <Media mediaType="movie" />,
-//   },
-//   {
-//     path: "/search",
-//     element: <SearchPage />,
-//   },
-//   {
-//     path: "/about",
-//     element: <About />,
-//   },
-//   {
-//     path: "/profile",
-//     element: <Profile />,
-//   },
-// ]);
-
-// return (
-//   <div>
-//     <RouterProvider router={appRouter} />
-//   </div>
-// );
-// };
 
 export default Body;

@@ -80,7 +80,7 @@ const Profile = () => {
               </h2>
               <p>Enhance your experience with premium features.</p>
               <button
-                className="font-bold p-2 mt-2 mr-2 mb-2 text-white bg-red-700 rounded-lg"
+                className="font-bold p-2 mt-2 mr-2 mb-2 text-white bg-gradient-to-r from-red-900 via-red-600 to-red-900 rounded-lg"
                 onClick={handleUpgradeClick}
               >
                 {isMember ? "Unsubscribe" : "Subscribe now"}
@@ -124,7 +124,7 @@ const Profile = () => {
                         Total Amount: ₹{plans[selectedPlan].price.toFixed(2)}
                       </p>
                       <button
-                        className="font-bold p-2 mt-2 mr-2 mb-2 text-white bg-red-700 rounded-lg"
+                        className="font-bold p-2 mt-2 mr-2 mb-2 text-white bg-gradient-to-r from-red-900 via-red-600 to-red-900 rounded-lg"
                         onClick={handlePayNow}
                       >
                         Pay Now
@@ -155,10 +155,10 @@ const Profile = () => {
                     </h2>
 
                     <button
-                      className="font-bold p-2 mt-2 mr-2 mb-2 text-white bg-red-700 rounded-lg"
+                      className="font-bold p-2 mt-2 mr-2 mb-2 text-white bg-gradient-to-r from-red-900 via-red-600 to-red-900 rounded-lg"
                       onClick={() => removeWatch(media.id)}
                     >
-                      remove
+                      Remove
                     </button>
                   </div>
                 ))}

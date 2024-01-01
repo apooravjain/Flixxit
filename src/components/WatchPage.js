@@ -2,8 +2,6 @@ import React from "react";
 import Header from "./Header";
 import WatchPicture from "./WatchPicture";
 import { useLocation } from "react-router-dom";
-import WatchVideo from "./WatchVideo";
-import VideoBackground from "./VideoBackground";
 
 const WatchPage = () => {
   const location = useLocation();

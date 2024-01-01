@@ -1,5 +1,4 @@
-import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
+import React from "react";
 import useMovieTrailer from "../hooks/useMovieTrailer";
 import { useLocation } from "react-router-dom";
 import { useParams } from "react-router-dom";
@@ -18,7 +17,7 @@ const WatchVideo = () => {
       <Header />
       <div className="">
         <iframe
-          className="w-screen aspect-video"
+          className="w-screen min-h-screen"
           src={
             "https://www.youtube.com/embed/" +
             trailerVideo?.key +

@@ -8,15 +8,16 @@ import Header from "./Header";
 const Media = ({ mediaType }) => {
   const tvSeries = usePopularTvSeries();
   const popularMovies = useSelector((state) => state.movies.popularMovies);
+  const heading = mediaType === "tv" ? "TV Series" : "Movies";
 
   const movies = useMemo(() => {
     return mediaType === "tv" ? tvSeries : popularMovies;
   }, [mediaType, tvSeries, popularMovies]);
 
   return (
-    <div className="">
+    <div>
       <Header />
-      <div className="grid grid-cols-4 gap-y-1 bg-black pt-[5%]">
+      <div className="grid grid-cols-4 gap-y-1 bg-black pt-[7%]">
         {movies.map((movie) => (
           <MovieCard
             movie={movie}

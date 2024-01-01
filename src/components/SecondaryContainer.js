@@ -1,8 +1,6 @@
 import React from "react";
 import MovieList from "./MovieList";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import WatchPage from "./WatchPage";
 
 const SecondaryContainer = () => {
   const movies = useSelector((story) => story.movies);
@@ -16,6 +14,11 @@ const SecondaryContainer = () => {
           movies={movies.topRatedMovies}
         />
         <MovieList title={"Popular Movies"} movies={movies.popularMovies} />
+      </div>
+      <div className="flex items-center justify-center">
+        <h1 className="font-extrabold text-transparent text-3xl p-5 my-8 text-center bg-clip-text bg-gradient-to-r from-red-950 via-red-600 to-red-950">
+          Flixxit
+        </h1>
       </div>
     </div>
   );
